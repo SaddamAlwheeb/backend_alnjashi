@@ -1,0 +1,6 @@
+venv/
+.venv
+.env
+
+alnjash.pub
+db.sqlite3
