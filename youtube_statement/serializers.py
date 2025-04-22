@@ -5,7 +5,7 @@ class ChannelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Channel
         fields = ['id', 'name', 'subtitle', 'description', 'image', 
-                 'youtube_id', 'subscriber_count', 'view_count', 'video_count',
+                 'youtube_id', 'subscriber_count', 'view_count', 'video_count','type',
                  'created_at', 'updated_at']
 
 
@@ -31,4 +31,4 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comment
         fields = ['id', 'video', 'video_title', 'channel_name', 'comment_text',
                  'youtube_id', 'author_name', 'author_channel_id', 'like_count',
-                 'sentiment', 'sentiment_score', 'created_at', 'updated_at']
+                 'sentiment', 'sentiment_score','is_comment_bank', 'created_at', 'updated_at']

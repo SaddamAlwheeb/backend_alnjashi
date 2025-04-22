@@ -17,6 +17,7 @@ class Channel(BaseModel):
     subscriber_count = models.IntegerField(default=0)
     view_count = models.IntegerField(default=0)
     video_count = models.IntegerField(default=0)
+    type = models.IntegerField(choices=ChannelTypeStat.choices , default= ChannelTypeStat.youtub)
 
     def __str__(self):
         return self.name
@@ -58,6 +59,7 @@ class Comment(BaseModel):
     like_count = models.IntegerField(default=0)
     sentiment = models.IntegerField(choices=CommentState.choices, default=CommentState.neutral)
     sentiment_score = models.FloatField(default=0.0)
+    is_comment_bank = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.author_name}: {self.comment_text[:50]}..."
