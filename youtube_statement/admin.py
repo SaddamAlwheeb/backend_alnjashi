@@ -28,7 +28,7 @@ class VideoAdmin(admin.ModelAdmin):
                             video=obj,
                             youtube_id=item['id'],
                             comment_text=snippet['textDisplay'],
-                            author_name=snippet['authorDisplayName'],
+                            user_name=snippet['authorDisplayName'],
                             author_channel_id=snippet.get('authorChannelId', {}).get('value'),
                             like_count=snippet.get('likeCount', 0),
                         ))

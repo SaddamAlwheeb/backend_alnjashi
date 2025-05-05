@@ -34,11 +34,13 @@ class Video(BaseModel):
     name = models.CharField(max_length=255)
     image = models.URLField(max_length=500)
     youtube_id = models.CharField(max_length=100, unique=True,null=True, blank=True)
+    duration = models.CharField(max_length=50, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     view_count = models.IntegerField(default=0)
     like_count = models.IntegerField(default=0)
     comment_count = models.IntegerField(default=0)
     published_at = models.DateTimeField(null=True, blank=True)
+
 
     def __str__(self):
         return self.name
@@ -53,16 +55,17 @@ class Video(BaseModel):
 class Comment(BaseModel):
     video = models.ForeignKey(Video, related_name="comments", on_delete=models.CASCADE)
     comment_text = models.TextField()
+    translated_text = models.TextField(null=True ,blank=True)
     youtube_id = models.CharField(max_length=100, unique=True)
-    author_name = models.CharField(max_length=255)
-    author_channel_id = models.CharField(max_length=100, blank=True, null=True)
+    user_name = models.CharField(max_length=100,null =True, blank=True)
+    user_image = models.CharField(max_length=2500, blank=True, null=True)
     like_count = models.IntegerField(default=0)
     sentiment = models.IntegerField(choices=CommentState.choices, default=CommentState.neutral)
     sentiment_score = models.FloatField(default=0.0)
-    is_comment_bank = models.BooleanField(default=False)
+    in_bank = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.author_name}: {self.comment_text[:50]}..."
+        return f"{self.user_name}: {self.comment_text[:50]}..."
 
     class Meta:
         ordering = ['-created_at']

@@ -63,7 +63,7 @@ class VideoViewSet(viewsets.ModelViewSet):
                         video=video,
                         youtube_id=item['id'],
                         comment_text=comment['textDisplay'],
-                        author_name=comment['authorDisplayName'],
+                        user_name=comment['authorDisplayName'],
                         author_channel_id=comment.get('authorChannelId', {}).get('value'),
                         like_count=comment.get('likeCount', 0)
                     ))
@@ -79,8 +79,8 @@ class CommentsViewSet(viewsets.ModelViewSet):
     pagination_class = PageNumberPagination
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_class = CommentFilter
-    filterset_fields = ['video', 'sentiment', 'author_name']
-    search_fields = ['comment_text', 'author_name']
+    filterset_fields = ['video', 'sentiment', 'user_name']
+    search_fields = ['comment_text', 'user_name']
     ordering_fields = ['created_at', 'like_count', 'sentiment_score']
 
 def get_youtube_comments(video_id):
@@ -127,7 +127,7 @@ def fetch_comments(request, video_id):
                 video=video,
                 youtube_id=item['id'],
                 comment_text=comment['textDisplay'],
-                author_name=comment['authorDisplayName'],
+                user_name=comment['authorDisplayName'],
                 author_channel_id=comment.get('authorChannelId', {}).get('value'),
                 like_count=comment.get('likeCount', 0)
             ))

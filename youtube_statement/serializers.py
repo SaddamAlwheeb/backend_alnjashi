@@ -16,19 +16,23 @@ class ChannelSelectSerializer(serializers.ModelSerializer):
 
 class VideoSerializer(serializers.ModelSerializer):
     channel_name = serializers.CharField(source='channel.name', read_only=True)
+    channel_image = serializers.CharField(source='channel.image', read_only=True)
     
     class Meta:
         model = Video
         fields = ['id', 'name', 'image', 'youtube_id', 'description',
                  'view_count', 'like_count', 'comment_count', 'published_at',
-                 'channel', 'channel_name', 'created_at', 'updated_at']
+                 'channel', 'channel_name','channel_image', 'created_at', 'updated_at']
 
 class CommentSerializer(serializers.ModelSerializer):
     video_title = serializers.CharField(source='video.name', read_only=True)
     channel_name = serializers.CharField(source='video.channel.name', read_only=True)
+    channel_image = serializers.CharField(source='video.channel.image', read_only=True)
+    category = serializers.IntegerField(source='video.channel.type', read_only=True)
+    channel_id = serializers.IntegerField(source='video.channel.id', read_only=True)
     
     class Meta:
         model = Comment
-        fields = ['id', 'video', 'video_title', 'channel_name', 'comment_text',
-                 'youtube_id', 'author_name', 'author_channel_id', 'like_count',
-                 'sentiment', 'sentiment_score','is_comment_bank', 'created_at', 'updated_at']
+        fields = ['id', 'video', 'video_title', 'channel_name','channel_image','channel_id', 'comment_text','translated_text',
+                 'youtube_id', 'user_name', 'user_image', 'like_count',
+                 'sentiment', 'sentiment_score','in_bank','category', 'created_at', 'updated_at']
