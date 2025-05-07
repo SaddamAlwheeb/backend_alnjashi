@@ -9,3 +9,6 @@ class ChannelTypeStat(models.IntegerChoices):
     youtub=1, 'يوتيوب',
     x=2, 'تويتر',
     tiktok=3, 'تيك توك',   
+
+
+
