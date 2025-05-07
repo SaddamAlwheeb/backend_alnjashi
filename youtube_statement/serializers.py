@@ -4,7 +4,7 @@ from .models import Channel, Video, Comment
 class ChannelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Channel
-        fields = ['id', 'name', 'subtitle', 'description', 'image', 
+        fields = ['id', 'name', 'subtitle', 'description','url', 'image', 
                  'youtube_id', 'subscriber_count', 'view_count', 'video_count','type',
                  'created_at', 'updated_at']
 

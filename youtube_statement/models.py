@@ -12,6 +12,7 @@ class Channel(BaseModel):
     name = models.CharField(max_length=255)
     subtitle = models.CharField(max_length=255, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
+    url = models.URLField(max_length=500)
     image = models.URLField(max_length=500)
     youtube_id = models.CharField(max_length=100, unique=True, blank=True, null=True)
     subscriber_count = models.IntegerField(default=0)
